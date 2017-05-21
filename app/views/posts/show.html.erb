@@ -1,0 +1,21 @@
+<a href="/">메인화면</a>
+<p><%= @post.title %></p>
+<p><%= @post.content %></p>
+
+<hr>
+<form action="/comments/create" method="POST">
+    <input type="hidden" value="<%=@post.id%>" name="post_id">
+    <textarea name="content" placeholder="내용"></textarea>
+    <input type="submit" value="댓글달기">
+</form>
+<h4>댓글목록</h4>
+
+<% @comments.each do |c| %>
+    <p>
+    - <%=c.content%>
+    <form action="/comments/destroy/<%=c.id%>" method="POST">
+        <button type="submit">삭제</button>
+    </form>
+    </p>
+    
+<% end %>

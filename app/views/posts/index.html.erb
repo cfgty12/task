@@ -1,0 +1,24 @@
+<div>
+<h1>트잇러</h1>
+
+<!--조건 주기-->
+<%unless session[:user_id].nil? %>
+    <h1>반갑습니다,<%= @user_email%>님</h1>
+    <a href="/sessions/destroy">로그아웃</a><br>
+<%else %>
+
+    <a href="/sessions/new">로그인</a><br>
+    <a href="/users/new">회원가입</a><br>
+<%end%>
+
+
+<%= render "new" %>
+<!--가져다 쓰는 것-->
+<% @posts.each do |p| %>
+    <p><a href="/posts/show/<%=p.id%>"><%= p.title %></a></p>
+    <form action="/posts/edit/<%=p.id%>" method="GET">
+        <button type="submit">수정</button>
+        <button type="submit" formmethod="POST" formaction="/posts/destroy/<%=p.id%>">삭제</button>
+    </form>
+<% end %>
+</div>

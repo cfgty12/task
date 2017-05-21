@@ -1,0 +1,5 @@
+<form action="/comments/update/<%=@comment.id%>" method="POST">
+    <input type="text" name="content" value="<%= @comment.content %>">
+    <textarea name="content"><%= @comment.content %></textarea>
+    <input type="submit" value="수정하기">
+</form>
